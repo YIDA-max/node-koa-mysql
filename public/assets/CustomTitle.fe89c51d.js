@@ -1,0 +1,3 @@
+import{u as _,L as e}from"./useCustomLogin.887e5231.js";import{a as l,b as c,u as m,l as u,j as o,o as d,c as g,e as s,t as a,f as p}from"./index.10ef4608.js";const f={class:"header"},h={class:"title m-0"},T={class:"mode mb-5"},S=c({__name:"CustomTitle",setup(b){const{t}=m(),{getLoginState:n}=_(),i=u(()=>({[e.LOGIN]:t("login.login"),[e.REGISTER]:t("login.register_1"),[e.RESET_PASSWORD]:t("login.forgetPwd_1")})[o(n)]);return(r,v)=>(d(),g("div",f,[s("h2",h,a(o(t)("login.title")),1),p(` <h3 class="mode mb-5" :class="[getFormTitle === '\u767B\u5F55' ? 'mt-7.5' : 'mt-1']">\r
+      {{ getFormTitle === '\u767B\u5F55' ? getFormTitle : '' }}</h3\r
+    > `),s("h3",T,a(o(i)),1)]))}});var B=l(S,[["__scopeId","data-v-39b3c64d"]]);export{B as default};

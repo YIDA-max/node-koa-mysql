@@ -1,0 +1,1 @@
+import{cy as o}from"./index.10ef4608.js";const s=e=>o.post({url:"/role/save",data:e}),l=e=>o.delete({url:"/role/removeBatch",data:e}),r=e=>o.put({url:"/role/edit",data:e}),a=e=>o.get({url:"/role/list",params:e}),c=e=>o.get({url:"/role/power",params:{roleId:e}}),p=e=>o.post({url:"/role/give",data:e});export{c as a,p as b,l as d,r as e,a as g,s};

@@ -1,0 +1,1 @@
+import{cy as e}from"./index.10ef4608.js";const a=t=>e.post({url:"/proteinQuantitativeAnalysis/proteinQuantitativeAnalysisAdd",data:t}),s=t=>e.post({url:"/gaProteinQuantitativeHome/queryKeShiHuaFenXiSelect",data:t}),n=t=>e.get({url:`/multiGroupAnalysis/findProcessParameter/${t}`});export{n as f,a as p,s as q};

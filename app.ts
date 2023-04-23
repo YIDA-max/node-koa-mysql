@@ -2,8 +2,8 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-04-23 18:06:51
- * @FilePath: /node-koa-mysql/app.js
+ * @LastEditTime: 2023-04-23 23:36:22
+ * @FilePath: \node-koa-mysql\app.ts
  * @Description: 默认的程序主入口
  */
 // 引入依赖模块
@@ -12,7 +12,10 @@ import views from "koa-views";
 import json from "koa-json";
 import onerror from "koa-onerror";
 import bodyparser from "koa-bodyparser";
+import koaStatic from "koa-static";
 import logger from "koa-logger";
+// 使用插件来读取.env里面的文件
+require("dotenv").config();
 
 import index from "./src/routes/index";
 import users from "./src/routes/users";
@@ -27,15 +30,19 @@ app.use(
 );
 app.use(json());
 app.use(logger());
-app.use(require("koa-static")(__dirname + "/public"));
-
+// 将 koa-static 中间件绑定到应用程序实例
+// __dirname 表示当前文件所在的目录，加上 "/public" 表示 public 文件夹是相对于当前文件的
+// 中间件的作用是提供静态文件服务，使客户端可以通过浏览器访问 public 文件夹中的静态文件
+app.use(koaStatic(__dirname + "/public"));
 // 配置视图模板引擎
 app.use(
   views(__dirname + "/views", {
-    extension: "pug",
+    extension: "html",
+    map: {
+      html: "ejs",
+    },
   })
 );
-
 // 日志记录
 app.use(async (ctx, next) => {
   const start = new Date();

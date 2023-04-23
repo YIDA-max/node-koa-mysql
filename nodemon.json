@@ -1,7 +1,7 @@
 {
   "verbose": false,
   "debug": false,
-  "exec": "yarn dev",
+  "exec": "ts-node -r tsconfig-paths/register ./src/bin/www",
   "ignore": [
     "mochawesome-report",
     "node_modules",
@@ -16,7 +16,7 @@
   "events": {
     "restart": ""
   },
-  "watch": ["./app", "./configs", "./app.ts"],
+  "watch": ["./src"],
   "ext": "ts",
   "inspect": true
 }

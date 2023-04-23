@@ -1,0 +1,1 @@
+import{cy as e,d9 as i}from"./index.10ef4608.js";const t=o=>e.post({url:"/minio/big_file_upload_create",data:o}),p=(o,a)=>i.put(o,a),_=o=>e.post({url:"/minio/checkDataFileName",data:o}),c=o=>e.post({url:"/minio/big_file_upload_part_complete",data:o}),s=o=>e.post({url:"/minio/big_file_upload_complete",data:o});export{c as a,t as b,s as c,_ as d,p as u};
