@@ -1,10 +1,19 @@
-#!/usr/bin/env node
+/*
+ * @Author: YIDA-max 3136271519@qq.com
+ * @Date: 2023-04-23 16:18:41
+ * @LastEditors: YIDA-max 3136271519@qq.com
+ * @LastEditTime: 2023-04-23 17:38:38
+ * @FilePath: /node-koa-mysql/src/bin/www.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
+
+// #!/usr/bin/env node
 
 /**
  * 引入依赖模块。
  */
 
-var app = require("../app");
+import { app } from "../../app";
 var debug = require("debug")("demo:server");
 var http = require("http");
 
@@ -24,7 +33,9 @@ var server = http.createServer(app.callback());
  * 在指定端口上监听，适用于所有网络接口。
  */
 
-server.listen(port);
+server.listen(port, () => {
+  console.log("开启成功");
+});
 server.on("error", onError);
 server.on("listening", onListening);
 
