@@ -1,1 +1,0 @@
-function n(e){if(typeof e!="object"||e===null)return e;let t;if(Array.isArray(e)){t=[];for(let r=0;r<e.length;r++)t[r]=n(e[r])}else{t={};for(const r in e)e.hasOwnProperty(r)&&(t[r]=n(e[r]))}return t}export{n as d};

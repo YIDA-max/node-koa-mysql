@@ -1,1 +1,0 @@
-import{r as s,l as u}from"./index.10ef4608.js";var c=(t=>(t.LOGIN="customLogin",t.REGISTER="customRegister",t.RESET_PASSWORD="customForgetPwd",t))(c||{});const o=s("customLogin");function i(){function t(r){o.value=r}const e=u(()=>o.value);function n(){t("customLogin")}return{setLoginState:t,getLoginState:e,handleBackLogin:n}}export{c as L,i as u};

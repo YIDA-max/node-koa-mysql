@@ -1,1 +1,0 @@
-import{a as t,b as s,o as a,c as _,e as o,t as r}from"./index.10ef4608.js";const c={class:"content"},n={class:"title"},i=s({__name:"Title",props:{title:{type:String,required:!0}},setup(e){return(l,p)=>(a(),_("div",c,[o("h2",n,r(e.title),1)]))}});var u=t(i,[["__scopeId","data-v-1eede97a"]]);export{u as default};

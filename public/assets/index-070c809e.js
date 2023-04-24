@@ -1,0 +1,1 @@
+import{I as r}from"./index-bb028553.js";import{a as e,H as s,o as n,f as o,e as t,u as c}from"./index-4a8cc517.js";const _=e({name:"InfraSwagger"}),i=e({..._,setup(u){const a=s({}.VITE_GLOB_BASE_URL+"/swagger-ui");return(f,l)=>(n(),o("div",null,[t(c(r),{src:a.value},null,8,["src"])]))}});export{i as default};

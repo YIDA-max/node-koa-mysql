@@ -1,0 +1,1 @@
+import{I as r}from"./index-bb028553.js";import{a as e,H as n,o as s,f as o,e as t,u as c}from"./index-4a8cc517.js";const _=e({name:"InfraServer"}),i=e({..._,setup(l){const a=n({}.VITE_GLOB_BASE_URL+"/admin/applications");return(f,m)=>(s(),o("div",null,[t(c(r),{src:a.value},null,8,["src"])]))}});export{i as default};
