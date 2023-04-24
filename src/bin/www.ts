@@ -2,8 +2,8 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 16:18:41
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-04-23 23:16:30
- * @FilePath: \node-koa-mysql\src\bin\www.ts
+ * @LastEditTime: 2023-04-24 15:12:19
+ * @FilePath: /node-koa-mysql/src/bin/www.ts
  * @Description: 这个文件是www的文件，真正的启动文件，都是默认执行这个文件的
  */
 // #!/usr/bin/env node
@@ -43,7 +43,7 @@ const server = http.createServer(app.callback());
  */
 
 server.listen(port, () => {
-  console.log("开启成功");
+  console.log("开启成功", process.env.PORT || "3000");
 });
 /**
  * HTTP服务器“error”事件的事件监听器。

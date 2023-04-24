@@ -8,6 +8,6 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
   },
-  "include": ["src/**/*", "views/_app.config.js"],
+  "include": ["src/**/*", "views/_app.config.js", "src/routes/pixiv","app.ts"],
   "exclude": ["node_modules", "public","src/routes/index.ts"]
 }

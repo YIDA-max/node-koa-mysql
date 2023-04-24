@@ -2,8 +2,8 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-04-23 23:24:28
- * @FilePath: \node-koa-mysql\src\routes\index.ts
+ * @LastEditTime: 2023-04-24 14:14:21
+ * @FilePath: /node-koa-mysql/src/routes/index.ts
  * @Description: 路由主入口
  */
 // const router = require("koa-router")();
@@ -27,5 +27,15 @@ router.get("/json", async (ctx, next) => {
     title: "koa2 json",
   };
 });
-
+router.get("/profile/:username", async (ctx, next) => {
+  const { username } = ctx.params;
+  ctx.body = {
+    title: "this is profile page",
+    username,
+  };
+});
+router.get("/test", async (ctx, next) => {
+  const { username } = ctx.params;
+  ctx.body = {};
+});
 export default router;

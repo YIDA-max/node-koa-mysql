@@ -2,8 +2,8 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-04-23 23:36:22
- * @FilePath: \node-koa-mysql\app.ts
+ * @LastEditTime: 2023-04-24 16:36:06
+ * @FilePath: /node-koa-mysql/app.ts
  * @Description: 默认的程序主入口
  */
 // 引入依赖模块
@@ -19,6 +19,7 @@ require("dotenv").config();
 
 import index from "./src/routes/index";
 import users from "./src/routes/users";
+import pixiv from "./src/routes/pixiv";
 const app = new Koa();
 // 错误处理
 onerror(app);
@@ -56,6 +57,17 @@ app.use(index.routes());
 app.use(index.allowedMethods());
 app.use(users.routes());
 app.use(users.allowedMethods());
+app.use(pixiv.routes());
+app.use(pixiv.allowedMethods());
+
+// 检查某个路由是否挂载
+const middleware = app.middleware;
+for (const item of middleware as any) {
+  if (item.router && item.router.opts.prefix === "/pixiv") {
+    console.log("/pixiv路由已经挂载");
+    break;
+  }
+}
 
 // 错误处理
 app.on("error", (err, ctx) => {
