@@ -25,8 +25,12 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.0",
+    "pixnode": "^2.0.5",
+    "base64url": "^3.0.1",
     "pug": "^2.0.3",
-    "tsconfig-paths": "^4.2.0"
+    "qs": "^6.11.0",
+    "tsconfig-paths": "^4.2.0",
+    "readline-sync": "^1.4.10"
   },
   "devDependencies": {
     "@types/koa": "^2.13.6",
@@ -38,6 +42,8 @@
     "@types/node": "^18.16.0",
     "nodemon": "^1.19.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "@types/qs": "^6.9.7",
+    "@types/readline-sync": "^1.4.4"
   }
 }
