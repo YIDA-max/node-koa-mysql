@@ -1,9 +1,9 @@
 /*
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 16:18:41
- * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-04-24 15:12:19
- * @FilePath: /node-koa-mysql/src/bin/www.ts
+ * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+ * @LastEditTime: 2023-04-27 00:18:00
+ * @FilePath: \node-koa-mysql\src\bin\www.ts
  * @Description: 这个文件是www的文件，真正的启动文件，都是默认执行这个文件的
  */
 // #!/usr/bin/env node
@@ -43,7 +43,24 @@ const server = http.createServer(app.callback());
  */
 
 server.listen(port, () => {
-  console.log("开启成功", process.env.PORT || "3000");
+  const os = require("os");
+  /**
+   * 获取当前机器的ip地址
+   */
+  function getIpAddress() {
+    let ifaces = os.networkInterfaces();
+    for (let dev in ifaces) {
+      let iface = ifaces[dev];
+      for (let i = 0; i < iface.length; i++) {
+        let { family, address, internal } = iface[i];
+        if (family === "IPv4" && address !== "127.0.0.1" && !internal) {
+          return address;
+        }
+      }
+    }
+  }
+  let ipAddress = getIpAddress();
+  console.log("开启成功", process.env.PORT || "3000", ipAddress);
 });
 /**
  * HTTP服务器“error”事件的事件监听器。
