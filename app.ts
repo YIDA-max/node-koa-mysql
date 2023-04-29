@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-04-24 16:36:06
+ * @LastEditTime: 2023-04-29 16:35:25
  * @FilePath: /node-koa-mysql/app.ts
  * @Description: 默认的程序主入口
  */
@@ -20,6 +20,7 @@ require("dotenv").config();
 import index from "./src/routes/index";
 import users from "./src/routes/users";
 import pixiv from "./src/routes/pixiv";
+import login from "./src/routes/Login";
 const app = new Koa();
 // 错误处理
 onerror(app);
@@ -51,7 +52,6 @@ app.use(async (ctx, next) => {
   const ms = Date.now() - (start as unknown as number);
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
-
 // 使用路由
 app.use(index.routes());
 app.use(index.allowedMethods());
@@ -59,6 +59,8 @@ app.use(users.routes());
 app.use(users.allowedMethods());
 app.use(pixiv.routes());
 app.use(pixiv.allowedMethods());
+app.use(login.routes());
+app.use(login.allowedMethods());
 
 // 检查某个路由是否挂载
 const middleware = app.middleware;
