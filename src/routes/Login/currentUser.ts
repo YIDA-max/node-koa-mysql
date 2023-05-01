@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-24 14:55:54
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-04-29 20:04:46
+ * @LastEditTime: 2023-04-30 18:23:10
  * @FilePath: /node-koa-mysql/src/routes/Login/currentUser.ts
  * @Description在这个文件我们只需要写业务逻辑中间件就可以了,不需要纠结其他的 模仿登录失败,看起来pixiv网站是需要某种密码进行验证才能登录的
  *
@@ -23,7 +23,7 @@ export default async (
   next: () => any
 ) => {
   ctx.body = {
-    success: Math.random() > 0.1 ? true : false,
+    success: true,
     data: {
       name: "Serati Ma",
       avatar:
