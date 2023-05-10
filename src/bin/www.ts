@@ -1,9 +1,9 @@
 /*
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 16:18:41
- * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @LastEditTime: 2023-04-27 00:18:00
- * @FilePath: \node-koa-mysql\src\bin\www.ts
+ * @LastEditors: YIDA-max 3136271519@qq.com
+ * @LastEditTime: 2023-05-10 14:33:54
+ * @FilePath: /node-koa-mysql/src/bin/www.ts
  * @Description: 这个文件是www的文件，真正的启动文件，都是默认执行这个文件的
  */
 // #!/usr/bin/env node
@@ -13,6 +13,7 @@
 import { app } from "../../app";
 import debugLib from "debug";
 import http from "http";
+import config from "../../config/server.config";
 const debug = debugLib("demo:server");
 /**
  * 将端口规范化为数字、字符串或false。
@@ -32,7 +33,7 @@ const normalizePort = (val) => {
 /**
  * 从环境变量中获取端口并存储在Express中。
  */
-const port = normalizePort(process.env.PORT || "3000");
+const port = normalizePort(config.PORT || "3000");
 /**
  * 创建HTTP服务器。
  */
@@ -60,7 +61,7 @@ server.listen(port, () => {
     }
   }
   let ipAddress = getIpAddress();
-  console.log("开启成功", process.env.PORT || "3000", ipAddress);
+  console.log("开启成功", (config.PORT || "3000") + "端口", ipAddress);
 });
 /**
  * HTTP服务器“error”事件的事件监听器。

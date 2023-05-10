@@ -2,10 +2,12 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-04-29 16:35:25
+ * @LastEditTime: 2023-05-10 12:17:29
  * @FilePath: /node-koa-mysql/app.ts
  * @Description: 默认的程序主入口
  */
+// 使用插件来读取.env里面的文件
+require("dotenv").config();
 // 引入依赖模块
 import Koa from "koa";
 import views from "koa-views";
@@ -14,9 +16,6 @@ import onerror from "koa-onerror";
 import bodyparser from "koa-bodyparser";
 import koaStatic from "koa-static";
 import logger from "koa-logger";
-// 使用插件来读取.env里面的文件
-require("dotenv").config();
-
 import index from "./src/routes/index";
 import users from "./src/routes/users";
 import pixiv from "./src/routes/pixiv";
