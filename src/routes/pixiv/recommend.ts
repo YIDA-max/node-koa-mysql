@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-24 14:55:54
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-04-30 16:30:08
+ * @LastEditTime: 2023-05-11 10:31:51
  * @FilePath: /node-koa-mysql/src/routes/pixiv/recommend.ts
  * @Description在这个文件我们只需要写业务逻辑中间件就可以了
  *
@@ -56,7 +56,5 @@ export default async (
     bookmarkIllustIDs, //表示收藏的id,是一个数组,里面给传输的id
     includeRankingLabel, //如果是true返回的结果中会包含每个排行榜的标签信息，例如排行榜名称、更新时间、排行类型等。
   });
-  // 返回了推荐列表之前,先手动的把所有的图片都下载下来,然后再进行返回
-  const list = Array.from(data);
   ctx.body = { data };
 };

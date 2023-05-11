@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-24 14:55:54
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-04-29 16:47:31
+ * @LastEditTime: 2023-05-11 10:42:11
  * @FilePath: /node-koa-mysql/src/routes/Login/login.ts
  * @Description在这个文件我们只需要写业务逻辑中间件就可以了,不需要纠结其他的 模仿登录失败,看起来pixiv网站是需要某种密码进行验证才能登录的
  *
@@ -23,7 +23,6 @@ export default async (
   next: () => any
 ) => {
   const { username, password, type } = ctx.request.body;
-  console.log(username, password, type);
   if (password === "admin" && username === "admin") {
     ctx.body = {
       status: "ok",
@@ -55,7 +54,7 @@ export default async (
     currentAuthority: "guest",
   };
   ctx.body = {
-    data: "",
+    data: "error",
     username,
     password,
   };
