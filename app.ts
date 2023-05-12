@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-11 10:08:05
+ * @LastEditTime: 2023-05-12 10:23:46
  * @FilePath: /node-koa-mysql/app.ts
  * @Description: 默认的程序主入口
  */
@@ -20,6 +20,7 @@ import index from "./src/routes/index";
 import users from "./src/routes/users";
 import pixiv from "./src/routes/pixiv";
 import login from "./src/routes/Login";
+import { error } from "@/utils/error";
 const app = new Koa();
 // 错误处理
 onerror(app);
@@ -71,9 +72,7 @@ for (const item of middleware as any) {
 }
 
 // 错误处理
-app.on("error", (err, ctx) => {
-  console.error("server error", err, ctx);
-});
+app.on("error", error);
 
 // 导出应用
 export { app };

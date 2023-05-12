@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-05-10 11:33:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-10 14:20:12
+ * @LastEditTime: 2023-05-12 11:34:39
  * @FilePath: /node-koa-mysql/database/connect.ts
  * @Description:
  *
@@ -11,12 +11,16 @@
 import mysql from "mysql2";
 import Pool from "mysql2/typings/mysql/lib/Pool";
 import config from "../config/MySql.config";
-interface ConnectionPoll extends Pool {
-  getConnection: typeof Pool.prototype.getConnection;
+interface YIDAConnectionPoll {
+  query: (query: string) => Promise<[any, any]>;
+  execute: (
+    query: string,
+    value: Array<number | string>
+  ) => Promise<[any, any]>;
 }
 
 const useConnection = () => {
-  const connectionPoll: ConnectionPoll = mysql.createPool(config);
+  const connectionPoll = mysql.createPool(config);
   // 测试是否连接成功
   connectionPoll.getConnection((err, connection) => {
     if (err) {
@@ -33,7 +37,7 @@ const useConnection = () => {
     });
   });
   // 使用promise包装
-  const connection: ConnectionPoll = connectionPoll.promise();
-  return { connection };
+  const connect: YIDAConnectionPoll = connectionPoll.promise();
+  return { connect };
 };
 export default useConnection;

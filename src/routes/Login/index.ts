@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-11 17:33:49
+ * @LastEditTime: 2023-05-12 15:29:24
  * @FilePath: /node-koa-mysql/src/routes/Login/index.ts
  * @Description: 路由入口之一
  */
@@ -10,6 +10,9 @@ import login from "./login";
 import currentUser from "./currentUser";
 import Router from "koa-router";
 import outLogin from "./outLogin";
+import register from "./register";
+import { validateInput, queryUser } from "./utils/register";
+import { validLogin } from "./utils/login";
 const router = new Router();
 router.prefix("/api");
 // 这个是登录接口,返回的值里面有status:"ok",type,currentAuthority: "admin",其中currentAuthority: "admin"是权限 status:"ok"是登录状态
@@ -18,4 +21,6 @@ router.post("/login/account", login);
 router.get("/currentUser", currentUser);
 // 这个是退出登录接口
 router.post("/login/outLogin", outLogin);
+// 这个是注册登录接口
+router.post("/login/register", validateInput, queryUser, register);
 export default router;
