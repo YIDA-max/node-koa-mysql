@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-12 10:23:46
+ * @LastEditTime: 2023-05-16 14:34:13
  * @FilePath: /node-koa-mysql/app.ts
  * @Description: 默认的程序主入口
  */
@@ -70,9 +70,7 @@ for (const item of middleware as any) {
     break;
   }
 }
-
 // 错误处理
 app.on("error", error);
-
 // 导出应用
 export { app };

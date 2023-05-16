@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-24 14:55:54
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-12 16:29:17
+ * @LastEditTime: 2023-05-16 14:36:57
  * @FilePath: /node-koa-mysql/src/routes/Login/login.ts
  * @Description在这个文件我们只需要写业务逻辑中间件就可以了,不需要纠结其他的 模仿登录失败,看起来pixiv网站是需要某种密码进行验证才能登录的
  *
@@ -10,6 +10,7 @@
  */
 import { connect } from "DB/index";
 import { RouterContext } from "koa-router";
+import { jwtUtils } from "@/utils/token/token";
 export default async (ctx: RouterContext, next: () => any) => {
   const { username, password, type } = ctx.request.body as any;
   const sql = `select * from users where username=? and password=?`;
@@ -17,6 +18,7 @@ export default async (ctx: RouterContext, next: () => any) => {
   if (data.length !== 0) {
     ctx.body = {
       status: "ok",
+      token: jwtUtils.generateToken({ name: data[0] }),
       type,
       currentAuthority: "admin",
     };
