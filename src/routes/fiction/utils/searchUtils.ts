@@ -58,8 +58,9 @@ const getHtmlListItems = ($: CheerioAPI) => {
 /**
  * 当发现单独的页面的时候的时候，组织数据进行返回
  */
-const getHtmlPageItems = ($: CheerioAPI, url: string) => {
+const getHtmlPageItems = ($: CheerioAPI) => {
   const info = $("#info"); // 获取id为main的div下所有的li元素
+  const url = $("link").eq(0).attr("href");
   return [
     {
       tag: info.find("p").eq(0).text().replace(/\[|\]/g, ""),

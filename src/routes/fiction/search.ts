@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-24 14:55:54
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-17 16:17:45
+ * @LastEditTime: 2023-05-19 10:40:33
  * @FilePath: /node-koa-mysql/src/routes/fiction/search.ts
  * @Description
  *
@@ -58,6 +58,7 @@ export default async (ctx: RouterContext, next: () => any) => {
   // 使用iconv-lite将GBK数据转换为UTF-8字符串 这个时候的data就是一个html页面了
   const data = iconv.decode(Buffer.from(response.data), "GBK");
   const $ = load(data);
+  console.log(" ", data);
   const isList = isListOrPage($, keyword);
   let list = [];
   switch (isList) {
@@ -72,10 +73,7 @@ export default async (ctx: RouterContext, next: () => any) => {
       };
       break;
     case "page":
-      list = getHtmlPageItems(
-        $,
-        `https://www.xbiquge.tw/modules/article/search.php?searchkey=${encodedKeyword}`
-      );
+      list = getHtmlPageItems($);
       ctx.body = {
         data: list,
         code: "200",

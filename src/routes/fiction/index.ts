@@ -2,12 +2,14 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-17 14:51:06
+ * @LastEditTime: 2023-05-18 17:03:30
  * @FilePath: /node-koa-mysql/src/routes/fiction/index.ts
  * @Description: 路由入口之一
  */
 import books from "./books";
 import search from "./search";
+import infoTextItem from "./infoTextItem";
+import novelText from "./novelText";
 import Router from "koa-router";
 const router = new Router();
 router.prefix("/api");
@@ -15,4 +17,8 @@ router.prefix("/api");
 router.get("/fiction/books/:current", books);
 // 关键查询接口
 router.get("/fiction/search", search);
+// 获取到小说内容的接口
+router.post("/fiction/content", infoTextItem);
+// 获取到小说正文接口
+router.post("/fiction/text", novelText);
 export default router;

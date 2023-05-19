@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-24 14:55:54
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-17 14:45:52
+ * @LastEditTime: 2023-05-18 10:01:30
  * @FilePath: /node-koa-mysql/src/routes/fiction/books.ts
  * @Description在这个文件我们只需要写业务逻辑中间件就可以了,不需要纠结其他的 模仿登录失败,看起来pixiv网站是需要某种密码进行验证才能登录的
  *
@@ -49,7 +49,7 @@ export default async (ctx: RouterContext, next: () => any) => {
   // 使用iconv-lite将GBK数据转换为UTF-8字符串 这个时候的data就是一个html页面了
   const data = iconv.decode(Buffer.from(response.data), "GBK");
   const $ = load(data);
-  const lsit = getbooksList($);
+  const lsit = getbooksList($, Number(current));
   ctx.body = {
     data: lsit,
     code: "200",

@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-05-16 17:47:49
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-17 10:48:38
+ * @LastEditTime: 2023-05-18 10:04:00
  * @FilePath: /node-koa-mysql/src/routes/fiction/utils/getFileBooks.ts
  * @Description:
  *
@@ -15,13 +15,13 @@ import { CheerioAPI } from "cheerio";
  * @param $
  * @returns
  */
-const getbooksList = ($: CheerioAPI) => {
-  return getInfo($);
+const getbooksList = ($: CheerioAPI, current: number) => {
+  return getInfo($, current);
 };
 /**
  * 获取到当前li下面的所有的信息
  */
-const getInfo = ($: CheerioAPI) => {
+const getInfo = ($: CheerioAPI, current: number) => {
   const infoList = [];
   const lis = $("#main li"); // 获取id为main的div下所有的li元素
   lis.each(function (i, elem) {
@@ -31,12 +31,14 @@ const getInfo = ($: CheerioAPI) => {
       url: string;
       latestChapter: string;
       author: string;
+      id: number;
     } = {
       tag: "",
       novelTitle: "",
       url: "",
       latestChapter: "",
       author: "",
+      id: 0,
     };
     // 获取每个li下的所有span标签的内容
     // 获取到所有的tag标签
@@ -54,6 +56,7 @@ const getInfo = ($: CheerioAPI) => {
     // 获取到所有的小说的作者
     const author = $(this).find("span").eq(3).text();
     info.author = author;
+    info.id = 40 * (current - 1) + i + 1;
     infoList.push(info);
   });
   return infoList;
