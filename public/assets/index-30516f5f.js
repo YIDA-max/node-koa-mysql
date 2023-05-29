@@ -1,1 +1,0 @@
-import{I as a}from"./index-bb028553.js";import{a as e,H as n,o as s,f as t,e as o,u as c}from"./index-4a8cc517.js";const _=e({name:"InfraDruid"}),i=e({..._,setup(u){const r=n({}.VITE_GLOB_BASE_URL+"/druid/index.html");return(l,f)=>(s(),t("div",null,[o(c(a),{src:r.value},null,8,["src"])]))}});export{i as default};

@@ -1,1 +1,0 @@
-import{I as t}from"./index-bb028553.js";import{a as e,H as o,f9 as s,o as a,f as n,e as c,u as _}from"./index-4a8cc517.js";const l=e({name:"ReportJmreport"}),d=e({...l,setup(m){const r=o({}.VITE_GLOB_BASE_URL+"/jmreport/list?token="+s());return(p,f)=>(a(),n("div",null,[c(_(t),{src:r.value},null,8,["src"])]))}});export{d as default};

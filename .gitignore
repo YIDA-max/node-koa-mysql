@@ -131,3 +131,5 @@ dist
 
 # 图片文件夹
 images/
+# 小说文件夹
+fictionList/

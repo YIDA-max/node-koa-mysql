@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-05-16 14:11:06
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-16 14:19:24
+ * @LastEditTime: 2023-05-22 16:44:47
  * @FilePath: /node-koa-mysql/src/utils/File/fileRoot.ts
  * @Description:
  *
@@ -10,7 +10,7 @@
  */
 import fs from "fs";
 import path from "path";
-export const getFileRoot: (value?: string) => {} = (currentDir) => {
+export const getFileRoot: (value?: string) => string = (currentDir) => {
   if (fs.existsSync(path.join(currentDir, "package.json"))) {
     return currentDir;
   }

@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-16 16:45:53
+ * @LastEditTime: 2023-05-22 18:02:40
  * @FilePath: /node-koa-mysql/app.ts
  * @Description: 默认的程序主入口
  */
@@ -22,6 +22,7 @@ import pixiv from "./src/routes/pixiv";
 import login from "./src/routes/Login";
 import fiction from "./src/routes/fiction";
 import { error } from "@/utils/error";
+const cors = require("@koa/cors");
 const app = new Koa();
 // 错误处理
 onerror(app);
@@ -37,6 +38,16 @@ app.use(logger());
 // __dirname 表示当前文件所在的目录，加上 "/public" 表示 public 文件夹是相对于当前文件的
 // 中间件的作用是提供静态文件服务，使客户端可以通过浏览器访问 public 文件夹中的静态文件
 app.use(koaStatic(__dirname + "/public"));
+app.use(koaStatic(__dirname + "/fictionList"));
+app.use(koaStatic(__dirname + "/images"));
+// 静态资源允许跨域
+app.use(
+  cors({
+    origin: "http://localhost:8000", // 允许的请求来源
+    credentials: true, // 是否允许发送跨域请求的凭据（如 cookie）
+  })
+);
+
 // 配置视图模板引擎
 app.use(
   views(__dirname + "/views", {

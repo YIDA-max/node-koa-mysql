@@ -1,1 +1,0 @@
-import{bD as e}from"./index-4a8cc517.js";function t(s){return e.get({url:"/system/permission/list-role-resources?roleId="+s})}function o(s){return e.get({url:"/system/permission/list-user-roles?userId="+s})}function i(s){return e.post({url:"/system/permission/assign-user-role",data:s})}export{o as a,i as b,t as l};
