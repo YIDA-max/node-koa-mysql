@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-29 10:38:34
+ * @LastEditTime: 2023-05-29 15:15:56
  * @FilePath: /node-koa-mysql/src/routes/fiction/index.ts
  * @Description: 路由入口之一
  */
@@ -13,7 +13,8 @@ import novelText from "./novelText";
 import Router from "koa-router";
 import upData from "./upData";
 import myFictionList from "./myFictionList";
-import myFictionItem from "./myFictionItem";
+import myFictionItemInfo from "./myFictionItemInfo";
+import myFictionItemContent from "./myFictionItemContent";
 import { upload } from "./utils/koaMulterInfo";
 const router = new Router();
 router.prefix("/api");
@@ -29,6 +30,8 @@ router.post("/fiction/text", novelText);
 router.post("/fiction/upData", upload, upData);
 // 获取到文件夹下面的所有小说
 router.get("/fiction/myFictionList", myFictionList);
-// 查询对应的小说接口
-router.get("/fiction/myFictionItem", myFictionItem);
+// 查询对应的上传小说简介信息接口
+router.post("/fiction/myFictionItemInfo", myFictionItemInfo);
+// 获取到对应的小说具体某一章的内容接口
+router.post("/fiction/myFictionItemContent", myFictionItemContent);
 export default router;

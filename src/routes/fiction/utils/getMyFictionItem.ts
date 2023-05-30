@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-05-22 16:26:25
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-29 10:56:36
+ * @LastEditTime: 2023-05-30 10:22:25
  * @FilePath: /node-koa-mysql/src/routes/fiction/utils/getMyFictionItem.ts
  * @Description:
  *
@@ -11,13 +11,25 @@
 import { getFileRoot } from "@/utils/File/fileRoot";
 import path from "path";
 import fs from "fs";
-import koa from "koa";
-import koaBody from "koa-body";
 import { FICTIONLIST } from "./info";
 // 获取项目的根目录
 const rootPath = getFileRoot(__dirname);
+const Epub = require("epub");
+// 读取整个epub文件
+const readEpubFile = async (path) => {
+  return new Promise((resolve, reject) => {
+    const epub = new Epub(path);
+    epub.on("end", function () {
+      resolve(epub);
+    });
+    epub.on("error", function (err) {
+      reject(err);
+    });
+    epub.parse();
+  });
+};
 const getMyFictionItem = async (fileName) => {
-  const uploadPath = path.join(FICTIONLIST);
+  const uploadPath = path.join(rootPath, FICTIONLIST);
   const type = fileName.split(".").pop();
   // 根据文件名称获取文件路径
   const filePath = path.join(uploadPath, type, fileName); // 文件路径
@@ -29,11 +41,12 @@ const getMyFictionItem = async (fileName) => {
       .catch(() => false);
     if (exists) {
       // 读取文件内容
-      // const fileContent = await fs.promises.readFile(filePath);
+      const fileContent: any = await readEpubFile(filePath);
       return {
         code: 200,
-        filePath,
+        data: fileContent,
         success: true,
+        filePath,
       };
     } else {
       return {
