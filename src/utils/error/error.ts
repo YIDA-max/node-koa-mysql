@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-05-12 10:22:28
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-05-22 15:16:28
+ * @LastEditTime: 2023-06-05 11:34:34
  * @FilePath: /node-koa-mysql/src/utils/error/error.ts
  * @Description: 错误处理
  *
@@ -26,6 +26,9 @@ export const error = (err, ctx: Context) => {
       break;
     case "1005":
       msg = "查询失败";
+      break;
+    case "1006":
+      msg = "后台网络查询错误";
       break;
   }
   ctx.body = {
