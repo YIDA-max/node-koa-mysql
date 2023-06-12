@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-24 14:55:54
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-06-09 11:06:58
+ * @LastEditTime: 2023-06-12 11:25:40
  * @FilePath: /node-koa-mysql/src/routes/comics/getComicsInfo.ts
  * @Description: 获取漫画列表
  *
@@ -12,23 +12,20 @@ import { RouterContext } from "koa-router";
 import axios from "axios";
 import { load } from "cheerio";
 import { getComicsInfo } from "./utils/getComicsInfo";
+const puppeteer = require("puppeteer");
 export default async (ctx: RouterContext, next: () => any) => {
   try {
-    const { url } = ctx.request.body as { url: string };
-    const { data } = await axios.get(url, {
-      headers: {
-        "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4",
-        "Cache-Control": "no-cache",
-        Connection: "keep-alive",
-        Cookie: "country=CN",
-        Host: "www.manhuagui.com",
-        Pragma: "no-cache",
-        "Upgrade-Insecure-Requests": "1",
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36",
-      },
+    const { toUrl } = ctx.request.body as { toUrl: string };
+    const browser = await puppeteer.launch({
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: "new",
     });
-    const $ = load(data);
+    const page = await browser.newPage();
+    await page.goto(toUrl, {
+      waitUntil: "networkidle2",
+    });
+    const content = await page.content();
+    const $ = load(content);
     const info = await getComicsInfo($);
     ctx.body = {
       code: 200,
