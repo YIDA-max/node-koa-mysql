@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-06-05 11:37:32
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-06-09 11:25:38
+ * @LastEditTime: 2023-06-12 14:57:09
  * @FilePath: /node-koa-mysql/src/routes/comics/utils/getComicsInfo.ts
  * @Description: 搜索漫画的方法
  *
@@ -72,7 +72,6 @@ const getheand = ($: CheerioAPI) => {
  * @param $
  * @returns
  */
-
 const getLike = ($: CheerioAPI) => {
   const like = $(".book-similar ul li");
   let Like = [];
@@ -93,13 +92,110 @@ const getLike = ($: CheerioAPI) => {
   });
   return Like;
 };
-// 获取到info
+
+/**
+ * 获取到对应的话,卷,单行本等信息
+ * @param $
+ * @returns
+ */
+const getChapter = ($: CheerioAPI) => {
+  const chapter = $("#chapter-list-1 ul li");
+  const Chapter = [];
+  const volume = $("#chapter-list-0 ul li");
+  const Volume = [];
+  chapter.each(function () {
+    // 章节名字
+    const chapterName = $(this).find("a").attr("title");
+    // 有多少页
+    const page = $(this).find("i").text();
+    // 跳转地址
+    const toUrl = "http://www.manhuagui.com" + $(this).find("a").attr("href");
+    Chapter.push({ chapterName, page, toUrl });
+  });
+  volume.each(function () {
+    // 卷名字
+    const volumeName = $(this).find("a").attr("title");
+    // 有多少页
+    const page = $(this).find("i").text();
+    // 跳转地址
+    const toUrl = "http://www.manhuagui.com" + $(this).find("a").attr("href");
+    Volume.push({ volumeName, page, toUrl });
+  });
+  // 进行排序从小到大
+  const sortedChapter = Chapter.sort((a, b) => {
+    const numA = parseInt(a.chapterName.replace(/[^0-9]/g, ""), 10) || Infinity;
+    const numB = parseInt(b.chapterName.replace(/[^0-9]/g, ""), 10) || Infinity;
+    return numA - numB;
+  });
+  const sortedVolume = Volume.sort((a, b) => {
+    const numA = parseInt(a.volumeName.replace(/[^0-9]/g, ""), 10) || Infinity;
+    const numB = parseInt(b.volumeName.replace(/[^0-9]/g, ""), 10) || Infinity;
+    return numA - numB;
+  });
+  return {
+    sortedChapter,
+    sortedVolume,
+  };
+};
+/** 获取到漫画评分 */
+const getScore = ($: CheerioAPI) => {
+  // 评分
+  const scoreNum = $(".score-avg").text();
+  // 评分人生
+  const scorePeople = $(".score-amo span").text();
+  // 评分占比
+  const scorePercent: {
+    five: string;
+    four: string;
+    three: string;
+    two: string;
+    one: string;
+  } = {
+    five: "",
+    four: "",
+    three: "",
+    two: "",
+    one: "",
+  };
+  $(".score-per p").each(function (i, e) {
+    switch (i) {
+      case 0:
+        scorePercent.five = $(this).text();
+        break;
+      case 1:
+        scorePercent.four = $(this).text();
+        break;
+      case 2:
+        scorePercent.three = $(this).text();
+        break;
+      case 3:
+        scorePercent.two = $(this).text();
+        break;
+      case 4:
+        scorePercent.one = $(this).text();
+        break;
+      default:
+        break;
+    }
+  });
+  return {
+    scoreNum,
+    scorePeople,
+    scorePercent,
+  };
+};
+/** 获取到漫画的章节信息 */
 const getInfo = ($: CheerioAPI) => {
   const heand = getheand($);
   const like = getLike($);
+  const { sortedChapter: Chapter, sortedVolume: Volume } = getChapter($);
+  const score = getScore($);
   return {
     heand,
     like,
+    Chapter,
+    Volume,
+    score,
   };
 };
 /**
@@ -107,5 +203,7 @@ const getInfo = ($: CheerioAPI) => {
  */
 export const getComicsInfo = async ($: CheerioAPI) => {
   const info = getInfo($);
-  return info;
+  // 获取到漫画的封面
+  const cover = "https:" + $(".hcover img").attr("src");
+  return { ...info, cover };
 };
