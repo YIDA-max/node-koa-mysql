@@ -133,3 +133,5 @@ dist
 images/
 # 小说文件夹
 fictionList/
+# 漫画文件夹
+comicsList/
