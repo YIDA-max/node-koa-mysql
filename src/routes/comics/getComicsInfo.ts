@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-24 14:55:54
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-06-12 11:25:40
+ * @LastEditTime: 2023-06-30 15:38:08
  * @FilePath: /node-koa-mysql/src/routes/comics/getComicsInfo.ts
  * @Description: 获取漫画列表
  *
@@ -27,6 +27,7 @@ export default async (ctx: RouterContext, next: () => any) => {
     const content = await page.content();
     const $ = load(content);
     const info = await getComicsInfo($);
+    browser.close();
     ctx.body = {
       code: 200,
       data: info,

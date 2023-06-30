@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-06-16 16:39:34
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-06-19 11:27:37
+ * @LastEditTime: 2023-06-21 10:54:21
  * @FilePath: /node-koa-mysql/src/routes/comics/utils/comicsDownload.ts
  * @Description:
  *
@@ -159,9 +159,11 @@ const getComicsChapterByArray = async (
       if (!fs.existsSync(subdir)) {
         fs.mkdirSync(subdir, { recursive: true }); // 修改这里
       }
-      // 等待一秒
+      // 等待1秒
       await new Promise((resolve) => {
-        setTimeout(resolve);
+        setTimeout(() => {
+          resolve(1);
+        }, 1000);
       });
       while (info.files.length) {
         try {
@@ -177,7 +179,7 @@ const getComicsChapterByArray = async (
           await new Promise((resolve) => {
             setTimeout(() => {
               resolve(1);
-            }, 100);
+            }, 500);
           });
         } catch (error) {
           console.log(" 解析某一张图片出错了", error);

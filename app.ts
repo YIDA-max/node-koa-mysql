@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-23 10:14:56
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-06-19 14:30:44
+ * @LastEditTime: 2023-06-30 14:57:41
  * @FilePath: /node-koa-mysql/app.ts
  * @Description: 默认的程序主入口
  */
@@ -22,6 +22,7 @@ import pixiv from "./src/routes/pixiv";
 import login from "./src/routes/Login";
 import fiction from "./src/routes/fiction";
 import comics from "@/routes/comics";
+import mooncell from "@/routes/Mooncell";
 import BZ from "@/routes/01BZ";
 import utilsClass from "@/routes/utilsClass";
 import { error } from "@/utils/error";
@@ -84,6 +85,8 @@ app.use(BZ.routes());
 app.use(BZ.allowedMethods());
 app.use(utilsClass.routes());
 app.use(utilsClass.allowedMethods());
+app.use(mooncell.routes());
+app.use(mooncell.allowedMethods());
 // 检查某个路由是否挂载
 const middleware = app.middleware;
 for (const item of middleware as any) {

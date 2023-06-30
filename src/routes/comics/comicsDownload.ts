@@ -2,7 +2,7 @@
  * @Author: YIDA-max 3136271519@qq.com
  * @Date: 2023-04-24 14:55:54
  * @LastEditors: YIDA-max 3136271519@qq.com
- * @LastEditTime: 2023-06-19 10:49:17
+ * @LastEditTime: 2023-06-30 15:38:23
  * @FilePath: /node-koa-mysql/src/routes/comics/comicsDownload.ts
  * @Description
  *
@@ -34,6 +34,7 @@ export default async (ctx: RouterContext, next: () => any) => {
       urlData.index
     );
     await getComicsChapterByArray(sortedVolume, name);
+    browser.close();
     ctx.body = {
       code: 200,
       data: {
